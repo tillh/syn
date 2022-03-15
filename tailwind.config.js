@@ -1,9 +1,9 @@
 module.exports = {
-  content: [
-      'pages/**/*.{ts,tsx}'
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
+    content: [
+        'pages/**/*.{ts,tsx}'
+    ],
+    theme: {
+        extend: {}
+    },
+    plugins: []
+};
