@@ -1,4 +1,4 @@
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { NewContract } from '../../common/model/contract.model';
 import { useForm } from 'react-hook-form';
 import styles from './Contract.module.css';
@@ -7,10 +7,13 @@ import { addContract } from './contract.api';
 type ContractFormProps = {};
 
 export function ContractForm({}: ContractFormProps) {
+    const queryClient = useQueryClient();
     const { mutate } = useMutation({ mutationFn: addContract });
     const { register, handleSubmit } = useForm<NewContract>();
     const submit = (contract: NewContract) => {
-        mutate(contract);
+        mutate(contract, {
+            onSuccess: () => queryClient.invalidateQueries('contracts')
+        });
     };
 
     return (

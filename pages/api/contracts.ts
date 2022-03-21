@@ -8,10 +8,11 @@ export default async function contractsHandler(req: NextApiRequest, res: NextApi
     const { db } = await connectToDatabase();
 
     switch (method) {
-        case 'GET':
-            const contracts = await db.collection('contracts').find({}).toArray();
+        case 'GET': {
+            const contracts = await getContracts(db);
 
             return res.json(contracts);
+        }
 
         case 'POST': {
             await addContract(db, body);
@@ -21,10 +22,14 @@ export default async function contractsHandler(req: NextApiRequest, res: NextApi
     }
 }
 
+async function getContracts(db: Db) {
+    return db.collection('contracts').find({}).sort({ createdAt: -1 }).toArray();
+}
+
 async function addContract(db: Db, body: NewContract) {
     const contractsCollection = await db.collection('contracts');
 
-    return await contractsCollection.insertOne({
+    return contractsCollection.insertOne({
         ...body,
         createdAt: new Date()
     });

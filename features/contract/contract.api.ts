@@ -1,4 +1,4 @@
-import { NewContract } from '../../common/model/contract.model';
+import { Contract, NewContract } from '../../common/model/contract.model';
 
 const HEADERS: HeadersInit = {
     'content-type': 'application/json;charset=UTF-8'
@@ -11,4 +11,10 @@ export async function addContract(contract: NewContract) {
         headers: HEADERS,
         body: JSON.stringify(contract)
     });
+}
+
+export async function getContracts(): Promise<Array<Contract>> {
+    const response = await fetch(CONTRACTS_PATH);
+
+    return response.json();
 }
