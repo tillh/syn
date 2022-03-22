@@ -1,15 +1,15 @@
 import { PropsWithChildren } from 'react';
 
 type CardProps = {
-    selected: boolean;
-    opacity: boolean;
+    selected?: boolean;
+    opacity?: boolean;
     disablePadding?: boolean;
 };
 
 export function Card({
     children,
-    selected,
-    opacity,
+    selected = false,
+    opacity = false,
     disablePadding = false
 }: PropsWithChildren<CardProps>) {
     return (

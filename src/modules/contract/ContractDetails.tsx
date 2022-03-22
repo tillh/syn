@@ -1,5 +1,4 @@
 import { Contract } from '../../common/model/contract.model';
-import styles from './Contract.module.css';
 
 type ContractProps = {
     contract: Contract;
@@ -13,7 +12,7 @@ export function ContractDetails({ contract, onEdit, onDelete }: ContractProps) {
     return (
         <>
             <div className={'mb-4'}>
-                <span className={styles.label}>Machine Name</span>
+                <span className={'label'}>Machine Name</span>
                 <h2 className={'p-2 border border-transparent bg-gray-50 rounded'}>
                     {machineName}
                 </h2>
@@ -21,13 +20,13 @@ export function ContractDetails({ contract, onEdit, onDelete }: ContractProps) {
 
             <div className="flex mb-4">
                 <div className={'flex-1 mr-2'}>
-                    <span className={styles.label}>One-Time Fee</span>
+                    <span className={'label'}>One-Time Fee</span>
                     <p className={'p-2 border border-transparent bg-gray-50 rounded'}>
                         {oneTimeFee}
                     </p>
                 </div>
                 <div className={'flex-1 ml-2'}>
-                    <span className={styles.label}>Usage Fee</span>
+                    <span className={'label'}>Usage Fee</span>
                     <p className={'p-2 border border-transparent bg-gray-50 rounded'}>{usageFee}</p>
                 </div>
             </div>

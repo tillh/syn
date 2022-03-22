@@ -1,6 +1,5 @@
 import { Contract } from '../../common/model/contract.model';
 import { useForm } from 'react-hook-form';
-import styles from './Contract.module.css';
 
 type ContractFormProps = {
     initialData?: Contract;
@@ -18,7 +17,7 @@ export function ContractForm({ initialData, onSubmit }: ContractFormProps) {
     return (
         <form onSubmit={handleSubmit(submitHandler)} noValidate={true}>
             <div className={'mb-4'}>
-                <label className={styles.label} htmlFor="machineName">
+                <label className={'label'} htmlFor="machineName">
                     Machine Name*
                 </label>
 
@@ -27,13 +26,13 @@ export function ContractForm({ initialData, onSubmit }: ContractFormProps) {
                     type="text"
                     {...register('machineName')}
                     autoComplete={'off'}
-                    className={styles.input}
+                    className={'input'}
                 />
             </div>
 
             <div className={'flex mb-4'}>
                 <div className={'mr-2 flex-1'}>
-                    <label className={styles.label} htmlFor="oneTimeFee">
+                    <label className={'label'} htmlFor="oneTimeFee">
                         One-Time Fee
                     </label>
 
@@ -43,12 +42,12 @@ export function ContractForm({ initialData, onSubmit }: ContractFormProps) {
                         {...register('oneTimeFee', {
                             setValueAs: (value) => parseFloat(value)
                         })}
-                        className={styles.input}
+                        className={'input'}
                     />
                 </div>
 
                 <div className={'ml-2 flex-1'}>
-                    <label className={styles.label} htmlFor="usageFee">
+                    <label className={'label'} htmlFor="usageFee">
                         Usage Fee
                     </label>
 
@@ -58,7 +57,7 @@ export function ContractForm({ initialData, onSubmit }: ContractFormProps) {
                         {...register('usageFee', {
                             setValueAs: (value) => parseFloat(value)
                         })}
-                        className={styles.input}
+                        className={'input'}
                     />
                 </div>
             </div>

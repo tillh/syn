@@ -1,7 +1,8 @@
 import { NextPage } from 'next';
+import { UsageCard } from '../modules/usage';
 
 const Usage: NextPage = () => {
-    return <div>Usage..</div>;
+    return <UsageCard />;
 };
 
 export default Usage;

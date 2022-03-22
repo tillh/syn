@@ -17,7 +17,7 @@ const Contracts: NextPage = () => {
     const [selectedEntry, setSelectedEntry] = useState<string | undefined>(undefined);
 
     return (
-        <section className={'flex flex-wrap -mx-2 p-4'}>
+        <>
             {selectedEntry === 'create' ? (
                 <Card selected={true} opacity={false}>
                     <ContractForm
@@ -64,7 +64,7 @@ const Contracts: NextPage = () => {
                     )}
                 </Card>
             ))}
-        </section>
+        </>
     );
 };
 

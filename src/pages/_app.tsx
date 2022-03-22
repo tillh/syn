@@ -10,7 +10,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <QueryClientProvider client={queryClient}>
             <Navbar />
-            <Component {...pageProps} />
+
+            <main className={'flex flex-wrap -mx-2 p-4'}>
+                <Component {...pageProps} />
+            </main>
         </QueryClientProvider>
     );
 }
