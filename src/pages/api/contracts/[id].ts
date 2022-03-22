@@ -1,47 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { connectToDatabase } from '../../../common/db/mongodb';
-import { Contract } from '../../../common/model/contract.model';
-import { Db, ObjectId } from 'mongodb';
+import { deleteContract, methodNotAllowed, updateContract } from '../../../backend';
 
-export default async function contractHandler(req: NextApiRequest, res: NextApiResponse) {
-    const { method, body } = req;
-    const { db } = await connectToDatabase();
+export default async function contractRequestHandler(req: NextApiRequest, res: NextApiResponse) {
+    const { method } = req;
 
-    switch (method) {
-        case 'PUT': {
-            await updateContract(db, body);
+    if (method === 'PUT') return updateContract(req, res);
+    if (method === 'DELETE') return deleteContract(req, res);
 
-            return res.status(204).end();
-        }
-
-        case 'DELETE': {
-            await deleteContract(db, body);
-
-            return res.status(204).end();
-        }
-
-        default:
-            return res.status(405).end(`Method ${req.method} Not Allowed`);
-    }
-}
-
-async function updateContract(db: Db, contract: Contract) {
-    const contractsCollection = await db.collection('contracts');
-
-    return contractsCollection.updateOne(
-        { _id: ObjectId.createFromHexString(contract._id) },
-        {
-            $set: {
-                machineName: contract.machineName,
-                usageFee: contract.usageFee,
-                oneTimeFee: contract.oneTimeFee
-            }
-        }
-    );
-}
-
-async function deleteContract(db: Db, contract: Contract) {
-    const contractsCollection = await db.collection('contracts');
-
-    return contractsCollection.deleteOne({ _id: ObjectId.createFromHexString(contract._id) });
+    return methodNotAllowed(req, res);
 }
