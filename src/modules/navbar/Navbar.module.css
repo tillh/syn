@@ -1,0 +1,7 @@
+.navItem {
+    @apply w-32 p-4 text-primary hover:bg-primary hover:bg-opacity-20 text-center;
+}
+
+.navItemActive {
+    @apply text-white bg-primary hover:bg-opacity-100;
+}
