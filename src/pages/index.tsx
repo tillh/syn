@@ -1,11 +1,11 @@
 import { NextPage } from 'next';
 import { Card } from '../common/component/Card';
-import { ContractDetails, ContractForm } from '../features/contract';
+import { ContractDetails, ContractForm } from '../modules/contract';
 import { PlusIcon } from '@heroicons/react/solid';
 import { useState } from 'react';
-import { useGetContracts } from '../features/contract/useGetContracts';
-import { useUpdateContract } from '../features/contract/useUpdateContract';
-import { useAddContract } from '../features/contract/useAddContract';
+import { useGetContracts } from '../modules/contract/useGetContracts';
+import { useUpdateContract } from '../modules/contract/useUpdateContract';
+import { useAddContract } from '../modules/contract/useAddContract';
 
 const Contracts: NextPage = () => {
     const { data } = useGetContracts();
