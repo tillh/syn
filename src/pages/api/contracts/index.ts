@@ -19,6 +19,9 @@ export default async function contractsHandler(req: NextApiRequest, res: NextApi
 
             return res.status(201).end();
         }
+
+        default:
+            return res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 }
 

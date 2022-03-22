@@ -26,3 +26,11 @@ export async function updateContract(contract: Contract) {
         body: JSON.stringify(contract)
     });
 }
+
+export async function deleteContract(contract: Contract) {
+    await fetch(`${CONTRACTS_PATH}/${contract._id}`, {
+        method: 'DELETE',
+        headers: HEADERS,
+        body: JSON.stringify(contract)
+    });
+}

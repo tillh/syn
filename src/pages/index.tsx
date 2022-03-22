@@ -6,11 +6,13 @@ import { useState } from 'react';
 import { useGetContracts } from '../modules/contract/useGetContracts';
 import { useUpdateContract } from '../modules/contract/useUpdateContract';
 import { useAddContract } from '../modules/contract/useAddContract';
+import { useDeleteContract } from '../modules/contract/useDeleteContract';
 
 const Contracts: NextPage = () => {
     const { data } = useGetContracts();
     const { mutate: addContract } = useAddContract();
     const { mutate: updateContract } = useUpdateContract();
+    const { mutate: deleteContract } = useDeleteContract();
 
     const [selectedEntry, setSelectedEntry] = useState<string | undefined>(undefined);
 
@@ -57,6 +59,7 @@ const Contracts: NextPage = () => {
                         <ContractDetails
                             contract={contract}
                             onEdit={(id) => setSelectedEntry(id)}
+                            onDelete={(contract) => deleteContract(contract)}
                         />
                     )}
                 </Card>

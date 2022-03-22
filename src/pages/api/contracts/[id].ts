@@ -13,6 +13,15 @@ export default async function contractHandler(req: NextApiRequest, res: NextApiR
 
             return res.status(204).end();
         }
+
+        case 'DELETE': {
+            await deleteContract(db, body);
+
+            return res.status(204).end();
+        }
+
+        default:
+            return res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 }
 
@@ -29,4 +38,10 @@ async function updateContract(db: Db, contract: Contract) {
             }
         }
     );
+}
+
+async function deleteContract(db: Db, contract: Contract) {
+    const contractsCollection = await db.collection('contracts');
+
+    return contractsCollection.deleteOne({ _id: ObjectId.createFromHexString(contract._id) });
 }

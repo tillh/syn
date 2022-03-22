@@ -4,9 +4,10 @@ import styles from './Contract.module.css';
 type ContractProps = {
     contract: Contract;
     onEdit(id: string): void;
+    onDelete(contract: Contract): void;
 };
 
-export function ContractDetails({ contract, onEdit }: ContractProps) {
+export function ContractDetails({ contract, onEdit, onDelete }: ContractProps) {
     const { machineName, usageFee, oneTimeFee } = contract;
 
     return (
@@ -32,6 +33,12 @@ export function ContractDetails({ contract, onEdit }: ContractProps) {
             </div>
 
             <div className={'flex justify-between'}>
+                <button
+                    className={'button button-red bg-red-500'}
+                    onClick={() => onDelete(contract)}>
+                    Delete
+                </button>
+
                 <button className={'button button-primary'} onClick={() => onEdit(contract._id)}>
                     Edit
                 </button>
