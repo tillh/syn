@@ -1,2 +1,1 @@
-export { ContractForm } from './ContractForm';
-export { ContractDetails } from './ContractDetails';
+export { Contracts } from './Contracts';

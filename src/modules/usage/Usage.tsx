@@ -5,7 +5,7 @@ import { Card } from '../../common/component/Card';
 import { ChevronDownIcon } from '@heroicons/react/outline';
 import { calculatePrice, PRICE_DEFAULT_VALUE } from './priceCalculator';
 
-export function UsageCard() {
+export function Usage() {
     const [usage, setUsage] = useState('');
     const [selectedContract, setSelectedContract] = useState<Contract | undefined>(undefined);
     const [contractPrice, setContractPrice] = useState(PRICE_DEFAULT_VALUE);

@@ -1,8 +1,8 @@
 import { NextPage } from 'next';
-import { UsageCard } from '../modules/usage';
+import { Usage } from '../modules/usage';
 
-const Usage: NextPage = () => {
-    return <UsageCard />;
+const UsagePage: NextPage = () => {
+    return <Usage />;
 };
 
-export default Usage;
+export default UsagePage;

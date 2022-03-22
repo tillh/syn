@@ -1,1 +1,1 @@
-export { UsageCard } from './UsageCard';
+export { Usage } from './Usage';
