@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import { ContractForm } from './ContractForm';
 import userEvent from '@testing-library/user-event';
-import { renderWithProviders } from '../../../test-utils/customRender';
+import { renderWithProviders } from '../../test-utils/customRender';
 import { NewContract } from '../../common/model/contract.model';
 
 describe('ContractForm', () => {
