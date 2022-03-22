@@ -1,5 +1,5 @@
 .label {
-    @apply text-gray-800 text-sm font-bold;
+    @apply text-gray-800 text-xs font-bold;
 }
 
 .input {

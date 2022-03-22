@@ -1,26 +1,25 @@
-import { useMutation, useQueryClient } from 'react-query';
-import { NewContract } from '../../common/model/contract.model';
+import { Contract } from '../../common/model/contract.model';
 import { useForm } from 'react-hook-form';
 import styles from './Contract.module.css';
-import { addContract } from './contract.api';
 
-type ContractFormProps = {};
+type ContractFormProps = {
+    initialData?: Contract;
+    onSubmit(contract: Contract): void;
+};
 
-export function ContractForm({}: ContractFormProps) {
-    const queryClient = useQueryClient();
-    const { mutate } = useMutation({ mutationFn: addContract });
-    const { register, handleSubmit } = useForm<NewContract>();
-    const submit = (contract: NewContract) => {
-        mutate(contract, {
-            onSuccess: () => queryClient.invalidateQueries('contracts')
-        });
-    };
+export function ContractForm({ initialData, onSubmit }: ContractFormProps) {
+    const { register, handleSubmit } = useForm<Contract>({
+        defaultValues: initialData,
+        mode: 'onChange'
+    });
+
+    const submitHandler = (contract: Contract) => onSubmit(contract);
 
     return (
-        <form onSubmit={handleSubmit(submit)} noValidate={true}>
+        <form onSubmit={handleSubmit(submitHandler)} noValidate={true}>
             <div className={'mb-4'}>
                 <label className={styles.label} htmlFor="machineName">
-                    Machine Name
+                    Machine Name*
                 </label>
 
                 <input

@@ -15,7 +15,8 @@ describe('ContractForm', () => {
             usageFee: 2,
             oneTimeFee: 4
         };
-        renderWithProviders(<ContractForm />);
+        const spySubmit = jest.fn();
+        renderWithProviders(<ContractForm onSubmit={spySubmit} />);
 
         userEvent.type(
             screen.getByRole('textbox', { name: /machine name/i }),
@@ -31,6 +32,6 @@ describe('ContractForm', () => {
         );
         userEvent.click(screen.getByText(/save/i));
 
-        await waitFor(() => expect(mockAddContract).toHaveBeenCalledWith(testNewContract));
+        await waitFor(() => expect(spySubmit).toHaveBeenCalledWith(testNewContract));
     });
 });

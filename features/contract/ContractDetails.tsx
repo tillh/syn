@@ -1,25 +1,40 @@
 import { Contract } from '../../common/model/contract.model';
 import styles from './Contract.module.css';
 
-type ContractProps = Contract;
+type ContractProps = {
+    contract: Contract;
+    onEdit(id: string): void;
+};
 
-export function ContractDetails({ machineName, usageFee, oneTimeFee }: ContractProps) {
+export function ContractDetails({ contract, onEdit }: ContractProps) {
+    const { machineName, usageFee, oneTimeFee } = contract;
+
     return (
         <>
             <div className={'mb-4'}>
                 <span className={styles.label}>Machine Name</span>
-                <h2 className={'py-2 border border-transparent'}>{machineName}</h2>
+                <h2 className={'p-2 border border-transparent bg-gray-50 rounded'}>
+                    {machineName}
+                </h2>
             </div>
 
-            <div className="flex">
-                <div className={'flex-1'}>
+            <div className="flex mb-4">
+                <div className={'flex-1 mr-2'}>
                     <span className={styles.label}>One-Time Fee</span>
-                    <p className={'py-2 border border-transparent'}>{oneTimeFee}</p>
+                    <p className={'p-2 border border-transparent bg-gray-50 rounded'}>
+                        {oneTimeFee}
+                    </p>
                 </div>
-                <div className={'flex-1'}>
+                <div className={'flex-1 ml-2'}>
                     <span className={styles.label}>Usage Fee</span>
-                    <p className={'py-2 border-transparent'}>{usageFee}</p>
+                    <p className={'p-2 border border-transparent bg-gray-50 rounded'}>{usageFee}</p>
                 </div>
+            </div>
+
+            <div className={'flex justify-between'}>
+                <button className={'button button-primary'} onClick={() => onEdit(contract._id)}>
+                    Edit
+                </button>
             </div>
         </>
     );

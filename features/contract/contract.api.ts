@@ -5,6 +5,12 @@ const HEADERS: HeadersInit = {
 };
 export const CONTRACTS_PATH = '/api/contracts';
 
+export async function getContracts(): Promise<Array<Contract>> {
+    const response = await fetch(CONTRACTS_PATH);
+
+    return response.json();
+}
+
 export async function addContract(contract: NewContract) {
     await fetch(CONTRACTS_PATH, {
         method: 'POST',
@@ -13,8 +19,10 @@ export async function addContract(contract: NewContract) {
     });
 }
 
-export async function getContracts(): Promise<Array<Contract>> {
-    const response = await fetch(CONTRACTS_PATH);
-
-    return response.json();
+export async function updateContract(contract: Contract) {
+    await fetch(`${CONTRACTS_PATH}/${contract._id}`, {
+        method: 'PUT',
+        headers: HEADERS,
+        body: JSON.stringify(contract)
+    });
 }

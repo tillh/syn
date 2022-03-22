@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { connectToDatabase } from '../../common/db/mongodb';
-import { NewContract } from '../../common/model/contract.model';
+import { connectToDatabase } from '../../../common/db/mongodb';
+import { NewContract } from '../../../common/model/contract.model';
 import { Db } from 'mongodb';
 
 export default async function contractsHandler(req: NextApiRequest, res: NextApiResponse) {
@@ -26,11 +26,11 @@ async function getContracts(db: Db) {
     return db.collection('contracts').find({}).sort({ createdAt: -1 }).toArray();
 }
 
-async function addContract(db: Db, body: NewContract) {
+async function addContract(db: Db, newContract: NewContract) {
     const contractsCollection = await db.collection('contracts');
 
     return contractsCollection.insertOne({
-        ...body,
+        ...newContract,
         createdAt: new Date()
     });
 }
