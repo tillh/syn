@@ -33,6 +33,7 @@ export function Contracts() {
                     selected={false}
                     opacity={selectedEntry !== undefined && selectedEntry !== 'create'}>
                     <button
+                        data-testid={'createContractBtn'}
                         onClick={() => setSelectedEntry('create')}
                         className={
                             'w-full h-full flex justify-center items-center hover:bg-primary hover:bg-opacity-10'

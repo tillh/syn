@@ -2,15 +2,10 @@ import { screen, waitFor } from '@testing-library/react';
 import { ContractForm } from './ContractForm';
 import userEvent from '@testing-library/user-event';
 import { renderWithProviders } from '../../test-utils/customRender';
-import { NewContract } from '../../common/model/contract.model';
+import { testNewContract } from '../../test-utils/data';
 
 describe('ContractForm', () => {
     test('should submit the entered values', async () => {
-        const testNewContract: NewContract = {
-            machineName: 'any machine name',
-            usageFee: 2,
-            oneTimeFee: 4
-        };
         const spySubmit = jest.fn();
         renderWithProviders(<ContractForm onSubmit={spySubmit} />);
 
