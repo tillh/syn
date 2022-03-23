@@ -29,7 +29,7 @@ describe('Contracts', () => {
 
             userEvent.click(screen.getByTestId('createContractBtn'));
             fillContractForm(testNewContract);
-            userEvent.click(screen.getByText(/save/i));
+            await clickSave();
 
             await waitFor(() =>
                 expect(mockAddContract).toHaveBeenNthCalledWith(1, testNewContract)
@@ -42,7 +42,7 @@ describe('Contracts', () => {
 
             userEvent.click(screen.getByTestId('createContractBtn'));
             fillContractForm(testNewContract);
-            userEvent.click(screen.getByText(/save/i));
+            await clickSave();
 
             await waitFor(() =>
                 expect(spyQueryClient).toHaveBeenNthCalledWith(1, CONTRACTS_QUERY_KEY)
@@ -69,7 +69,7 @@ describe('Contracts', () => {
                 oneTimeFee: 4
             });
 
-            userEvent.click(screen.getByText(/save/i));
+            await clickSave();
 
             await waitFor(() =>
                 expect(mockUpdateContract).toHaveBeenNthCalledWith(1, {
@@ -86,7 +86,7 @@ describe('Contracts', () => {
             const spyQueryClient = jest.spyOn(queryClient, 'invalidateQueries');
 
             userEvent.click(await screen.findByText(/edit/i));
-            userEvent.click(screen.getByText(/save/i));
+            await clickSave();
 
             await waitFor(() =>
                 expect(spyQueryClient).toHaveBeenNthCalledWith(1, CONTRACTS_QUERY_KEY)
@@ -129,4 +129,9 @@ function fillContractForm(contract: Omit<Contract, '_id' | 'createdAt'>) {
         screen.getByRole('spinbutton', { name: /one-time fee/i }),
         `${contract.oneTimeFee}`
     );
+}
+
+async function clickSave() {
+    expect(await screen.findByText(/save/i)).toBeEnabled();
+    userEvent.click(screen.getByText(/save/i));
 }

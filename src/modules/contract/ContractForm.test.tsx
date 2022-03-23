@@ -21,6 +21,7 @@ describe('ContractForm', () => {
             screen.getByRole('spinbutton', { name: /one-time fee/i }),
             `${testNewContract.oneTimeFee}`
         );
+        expect(await screen.findByText(/save/i)).toBeEnabled();
         userEvent.click(screen.getByText(/save/i));
 
         await waitFor(() => expect(spySubmit).toHaveBeenCalledWith(testNewContract));
