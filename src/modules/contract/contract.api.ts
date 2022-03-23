@@ -30,7 +30,6 @@ export async function updateContract(contract: Contract) {
 export async function deleteContract(contract: Contract) {
     await fetch(`${CONTRACTS_PATH}/${contract._id}`, {
         method: 'DELETE',
-        headers: HEADERS,
-        body: JSON.stringify(contract)
+        headers: HEADERS
     });
 }
