@@ -5,9 +5,10 @@ import { NumberInput } from './NumberInput';
 type ContractFormProps = {
     initialData?: Contract;
     onSubmit(contract: Contract): void;
+    onCancel(): void;
 };
 
-export function ContractForm({ initialData, onSubmit }: ContractFormProps) {
+export function ContractForm({ initialData, onSubmit, onCancel }: ContractFormProps) {
     const { register, handleSubmit, formState } = useForm<Contract>({
         defaultValues: initialData,
         mode: 'onChange'
@@ -50,7 +51,11 @@ export function ContractForm({ initialData, onSubmit }: ContractFormProps) {
                 </div>
             </div>
 
-            <div className="flex justify-end">
+            <div className="flex justify-between">
+                <button className="button-outline" type="button" onClick={onCancel}>
+                    Cancel
+                </button>
+
                 <button className="button button-primary" type="submit" disabled={!isValid}>
                     Save
                 </button>

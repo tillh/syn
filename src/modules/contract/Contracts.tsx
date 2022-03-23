@@ -17,6 +17,8 @@ export function Contracts() {
 
     const [selectedEntry, setSelectedEntry] = useState<string | undefined>(undefined);
 
+    const clearSelection = () => setSelectedEntry(undefined);
+
     return (
         <>
             {selectedEntry ? <Backdrop /> : null}
@@ -28,6 +30,7 @@ export function Contracts() {
                             addContract(newContract);
                             setSelectedEntry(undefined);
                         }}
+                        onCancel={clearSelection}
                     />
                 </Card>
             ) : (
@@ -50,8 +53,9 @@ export function Contracts() {
                             initialData={contract}
                             onSubmit={(contractToUpdate) => {
                                 updateContract(contractToUpdate);
-                                setSelectedEntry(undefined);
+                                clearSelection();
                             }}
+                            onCancel={clearSelection}
                         />
                     ) : (
                         <ContractDetails

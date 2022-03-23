@@ -7,7 +7,7 @@ import { testNewContract } from '../../test-utils/data';
 describe('ContractForm', () => {
     test('should submit the entered values', async () => {
         const spySubmit = jest.fn();
-        renderWithProviders(<ContractForm onSubmit={spySubmit} />);
+        renderWithProviders(<ContractForm onSubmit={spySubmit} onCancel={jest.fn()} />);
 
         userEvent.type(
             screen.getByRole('textbox', { name: /machine name/i }),
