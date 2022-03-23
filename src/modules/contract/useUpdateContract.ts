@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { Contract } from '../../common/model/contract.model';
 import { updateContract } from './contract.api';
-import { CONTRACTS_QUERY_KEY } from './constant';
+import { CONTRACTS_QUERY_KEY } from './useGetContracts';
 
 export const useUpdateContract = () => {
     const queryClient = useQueryClient();

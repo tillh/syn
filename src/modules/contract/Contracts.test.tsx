@@ -4,8 +4,8 @@ import userEvent from '@testing-library/user-event';
 import { screen, waitFor } from '@testing-library/react';
 import { Contract } from '../../common/model/contract.model';
 import { addContract, deleteContract, getContracts, updateContract } from './contract.api';
-import { CONTRACTS_QUERY_KEY } from './constant';
 import { testContract, testContracts, testNewContract } from '../../test-utils/data';
+import { CONTRACTS_QUERY_KEY } from './useGetContracts';
 
 jest.mock('./contract.api');
 const mockGetContracts = getContracts as jest.Mock;
