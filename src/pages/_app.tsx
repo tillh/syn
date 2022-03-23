@@ -1,8 +1,8 @@
 import '../common/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { QUERY_CONFIG } from '../constant/query.config';
 import { Navbar } from '../modules/navbar';
+import { QUERY_CONFIG } from '../constant/config';
 
 const queryClient = new QueryClient(QUERY_CONFIG);
 

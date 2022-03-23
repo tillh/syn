@@ -2,12 +2,11 @@ import { ObjectId } from 'mongodb';
 import { Contract } from '../common/model/contract.model';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { connectToDatabase } from '../common/db/mongodb';
+import { CONTRACTS_COLLECTION } from '../constant/constants';
 
 type ContractQuery = {
     id: string;
 };
-
-const CONTRACTS_COLLECTION = 'contracts';
 
 export async function getContracts(req: NextApiRequest, res: NextApiResponse<Array<Contract>>) {
     const { db } = await connectToDatabase();
@@ -36,8 +35,6 @@ export async function updateContract(req: NextApiRequest, res: NextApiResponse) 
     const { body, query } = req;
     const contract = body as Contract;
     const { id } = query as ContractQuery;
-
-    console.log(id);
 
     const { db } = await connectToDatabase();
     await db.collection(CONTRACTS_COLLECTION).updateOne(

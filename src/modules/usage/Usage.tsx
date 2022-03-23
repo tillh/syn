@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Contract } from '../../common/model/contract.model';
-import { useGetContracts } from '../contract/useGetContracts';
 import { Card } from '../../common/component/Card';
 import { ChevronDownIcon } from '@heroicons/react/outline';
 import { calculatePrice, PRICE_DEFAULT_VALUE } from './priceCalculator';
 
-export function Usage() {
+type UsageProps = {
+    contracts: Array<Contract>;
+};
+
+export function Usage({ contracts }: UsageProps) {
     const [usage, setUsage] = useState('');
     const [selectedContract, setSelectedContract] = useState<Contract | undefined>(undefined);
     const [contractPrice, setContractPrice] = useState(PRICE_DEFAULT_VALUE);
-
-    const { data } = useGetContracts();
 
     useEffect(() => {
         if (!selectedContract || usage === '') {
@@ -51,7 +52,7 @@ export function Usage() {
                         id={'contract'}
                         defaultValue={''}
                         onChange={(e) => {
-                            const contract = data?.find(
+                            const contract = contracts.find(
                                 (contract) => contract._id === e.target.value
                             );
                             setSelectedContract(contract);
@@ -61,7 +62,7 @@ export function Usage() {
                             Select contract
                         </option>
 
-                        {data?.map((contract) => (
+                        {contracts.map((contract) => (
                             <option key={contract._id} value={contract._id}>
                                 {contract.machineName}
                             </option>
