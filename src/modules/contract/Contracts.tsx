@@ -7,6 +7,7 @@ import { Card } from '../../common/component/Card';
 import { ContractForm } from './ContractForm';
 import { PlusIcon } from '@heroicons/react/solid';
 import { ContractDetails } from './ContractDetails';
+import { Backdrop } from '../../common/component/Backdrop';
 
 export function Contracts() {
     const { data } = useGetContracts();
@@ -18,8 +19,10 @@ export function Contracts() {
 
     return (
         <>
+            {selectedEntry ? <Backdrop /> : null}
+
             {selectedEntry === 'create' ? (
-                <Card selected={true} opacity={false}>
+                <Card selected={true}>
                     <ContractForm
                         onSubmit={(newContract) => {
                             addContract(newContract);
@@ -28,10 +31,7 @@ export function Contracts() {
                     />
                 </Card>
             ) : (
-                <Card
-                    disablePadding={true}
-                    selected={false}
-                    opacity={selectedEntry !== undefined && selectedEntry !== 'create'}>
+                <Card disablePadding={true} selected={false}>
                     <button
                         data-testid={'createContractBtn'}
                         onClick={() => setSelectedEntry('create')}
@@ -44,10 +44,7 @@ export function Contracts() {
             )}
 
             {data?.map((contract) => (
-                <Card
-                    key={contract._id}
-                    selected={selectedEntry === contract._id}
-                    opacity={selectedEntry !== undefined && selectedEntry !== contract._id}>
+                <Card key={contract._id} selected={selectedEntry === contract._id}>
                     {selectedEntry === contract._id ? (
                         <ContractForm
                             initialData={contract}

@@ -8,7 +8,7 @@ const TestComponent = () => {
 describe('Card', () => {
     test('should render children', () => {
         render(
-            <Card selected={false} opacity={false}>
+            <Card>
                 <TestComponent />
             </Card>
         );
