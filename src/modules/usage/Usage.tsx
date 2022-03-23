@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Contract } from '../../common/model/contract.model';
 import { Card } from '../../common/component/Card';
-import { ChevronDownIcon } from '@heroicons/react/outline';
 import { calculatePrice, PRICE_DEFAULT_VALUE } from './priceCalculator';
+import { LabelValue } from '../../common/component/LabelValue';
+import { ContractSelection } from './ContractSelection';
 
 type UsageProps = {
     contracts: Array<Contract>;
@@ -43,46 +44,10 @@ export function Usage({ contracts }: UsageProps) {
             </div>
 
             <div className={'mb-4'}>
-                <label className={'label'} htmlFor="contract">
-                    Contract
-                </label>
-
-                <div className="relative">
-                    <select
-                        id={'contract'}
-                        defaultValue={''}
-                        onChange={(e) => {
-                            const contract = contracts.find(
-                                (contract) => contract._id === e.target.value
-                            );
-                            setSelectedContract(contract);
-                        }}
-                        className="appearance-none w-full bg-white border hover:border-gray-500 p-2 rounded">
-                        <option value={''} disabled>
-                            Select contract
-                        </option>
-
-                        {contracts.map((contract) => (
-                            <option key={contract._id} value={contract._id}>
-                                {contract.machineName}
-                            </option>
-                        ))}
-                    </select>
-
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <ChevronDownIcon className={'w-4 h-4'} />
-                    </div>
-                </div>
+                <ContractSelection contracts={contracts} onContractSelect={setSelectedContract} />
             </div>
 
-            <div>
-                <span className={'label'}>Contract Price</span>
-                <p
-                    className={'p-2 border border-transparent bg-gray-50 rounded'}
-                    data-testid={'contractPrice'}>
-                    {contractPrice}
-                </p>
-            </div>
+            <LabelValue label={'Contract'} value={contractPrice} testId={'contractPrice'} />
         </Card>
     );
 }

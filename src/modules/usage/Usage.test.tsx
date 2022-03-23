@@ -5,7 +5,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 describe('Usage', () => {
-    test('should calculate contract price when usage is defined and a contract is selected', async () => {
+    test('should calculate contract price when usage is entered and a contract is selected', async () => {
         renderWithProviders(<Usage contracts={testContracts} />);
 
         userEvent.type(screen.getByRole('spinbutton', { name: 'Usage' }), '4');
