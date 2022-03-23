@@ -27,9 +27,7 @@ export function ContractDetails({ contract, onEdit, onDelete }: ContractProps) {
             </div>
 
             <div className={'flex justify-between'}>
-                <button
-                    className={'button button-red bg-red-500'}
-                    onClick={() => onDelete(contract)}>
+                <button className={'button button-red'} onClick={() => onDelete(contract)}>
                     Delete
                 </button>
 
