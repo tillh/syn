@@ -76,7 +76,9 @@ export function Usage() {
 
             <div>
                 <span className={'label'}>Contract Price</span>
-                <p className={'p-2 border border-transparent bg-gray-50 rounded'}>
+                <p
+                    className={'p-2 border border-transparent bg-gray-50 rounded'}
+                    data-testid={'contractPrice'}>
                     {contractPrice}
                 </p>
             </div>
