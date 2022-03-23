@@ -31,15 +31,15 @@ a {
 }
 
 .button-outline {
-    @apply font-semibold py-1 px-4 rounded text-sm bg-transparent hover:bg-primary hover:bg-opacity-10 border border-primary text-primary;
+    @apply font-semibold py-1 px-4 rounded text-sm bg-transparent hover:bg-primary hover:bg-opacity-10 text-primary;
 }
 
 .button-primary {
-    @apply bg-primary hover:bg-primary hover:bg-opacity-90 text-white;
+    @apply bg-primary hover:bg-primary hover:bg-opacity-80 text-white;
 }
 
 .button-red {
-    @apply bg-red-600 hover:bg-red-600 hover:bg-opacity-90 text-white;
+    @apply bg-red-600 hover:bg-red-600 hover:bg-opacity-80 text-white;
 }
 
 .label {
