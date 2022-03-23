@@ -1,5 +1,6 @@
 import { Contract } from '../../common/model/contract.model';
 import { useForm } from 'react-hook-form';
+import { NumberInput } from './NumberInput';
 
 type ContractFormProps = {
     initialData?: Contract;
@@ -7,10 +8,11 @@ type ContractFormProps = {
 };
 
 export function ContractForm({ initialData, onSubmit }: ContractFormProps) {
-    const { register, handleSubmit } = useForm<Contract>({
+    const { register, handleSubmit, formState } = useForm<Contract>({
         defaultValues: initialData,
         mode: 'onChange'
     });
+    const { isValid } = formState;
 
     const submitHandler = (contract: Contract) => onSubmit(contract);
 
@@ -24,46 +26,32 @@ export function ContractForm({ initialData, onSubmit }: ContractFormProps) {
                 <input
                     id="machineName"
                     type="text"
-                    {...register('machineName')}
-                    autoComplete={'off'}
                     className={'input'}
+                    autoComplete={'off'}
+                    {...register('machineName', { required: true })}
                 />
             </div>
 
             <div className={'flex mb-4'}>
                 <div className={'mr-2 flex-1'}>
                     <label className={'label'} htmlFor="oneTimeFee">
-                        One-Time Fee
+                        One-Time Fee*
                     </label>
 
-                    <input
-                        id="oneTimeFee"
-                        type="number"
-                        {...register('oneTimeFee', {
-                            setValueAs: (value) => parseFloat(value)
-                        })}
-                        className={'input'}
-                    />
+                    <NumberInput id={'oneTimeFee'} register={register} />
                 </div>
 
                 <div className={'ml-2 flex-1'}>
                     <label className={'label'} htmlFor="usageFee">
-                        Usage Fee
+                        Usage Fee*
                     </label>
 
-                    <input
-                        id="usageFee"
-                        type="number"
-                        {...register('usageFee', {
-                            setValueAs: (value) => parseFloat(value)
-                        })}
-                        className={'input'}
-                    />
+                    <NumberInput id={'usageFee'} register={register} />
                 </div>
             </div>
 
             <div className="flex justify-end">
-                <button className="button button-primary" type="submit">
+                <button className="button button-primary" type="submit" disabled={!isValid}>
                     Save
                 </button>
             </div>
