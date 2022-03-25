@@ -29,6 +29,7 @@ export function ContractForm({ initialData, onSubmit, onCancel }: ContractFormPr
                     type="text"
                     className={'input'}
                     autoComplete={'off'}
+                    autoFocus={!initialData?.machineName}
                     {...register('machineName', { required: true })}
                 />
             </div>
