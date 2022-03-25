@@ -9,6 +9,9 @@ const nextConfig = {
                 permanent: true
             }
         ];
+    },
+    experimental: {
+        outputStandalone: true
     }
 };
 
